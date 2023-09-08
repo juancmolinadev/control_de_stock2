@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.alura.jdbc.factory.ConectionFactory;
+import com.alura.jdbc.factory.ConnectionFactory;
 
 public class ProductoController {
 
@@ -24,7 +24,7 @@ public class ProductoController {
 
 	public List<Map<String, String>> listar() throws SQLException {
 
-		Connection con = new ConectionFactory().recuperaConexion();
+		Connection con = new ConnectionFactory().recuperaConexion();
 
 		Statement statement = con.createStatement();
 
@@ -48,8 +48,23 @@ public class ProductoController {
 		return resultado;
 	}
 
-	public void guardar(Object producto) {
-		// TODO
+	public void guardar(Map<String, String> producto) throws SQLException {
+
+		Connection con = new ConnectionFactory().recuperaConexion();
+
+		Statement statement = con.createStatement();
+
+		statement.execute("INSERT INTO producto (NOMBRE, descripcion, cantidad)" + " VALUES ('" + producto.get("NOMBRE")
+				+ "', '" + producto.get("DESCRIPCION") + "', '" + producto.get("CANTIDAD") + "')",
+				Statement.RETURN_GENERATED_KEYS);
+
+		ResultSet resultSet = statement.getGeneratedKeys();
+
+		while (resultSet.next()) {
+			System.out.println(
+					String.format(
+							"fue insertado el producto de id", resultSet.getInt(1)));
+		}
 	}
 
 }
