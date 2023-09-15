@@ -17,14 +17,14 @@ import com.alura.jdbc.modelo.Producto;
 
 public class ProductoDAO {
 
-    final private Connection con;
+    private Connection con;
 
     public ProductoDAO(Connection con) {
         this.con = con;
     }
 
     public void guardar(Producto producto) {
-        try (con) {
+        try {
             final PreparedStatement statement = con.prepareStatement(
                     "INSERT INTO producto (NOMBRE, descripcion, cantidad) VALUES(?,?,?)",
                     Statement.RETURN_GENERATED_KEYS);
@@ -78,7 +78,7 @@ public class ProductoDAO {
     public List<Producto> listar() {
         List<Producto> resultado = new ArrayList<>();
 
-        try (con) {
+        try {
             final PreparedStatement statement = con
                     .prepareStatement("SELECT ID, NOMBRE, DESCRIPCION, CANTIDAD FROM PRODUCTO");
             statement.execute();
