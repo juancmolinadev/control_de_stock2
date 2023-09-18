@@ -4,10 +4,15 @@ public class Categoria {
     private Integer id;
     private String nombre;
 
+    // esta clase es la representacion en codigo de la tabla categoria
     public Categoria(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
 
+    }
+
+    public Integer getId() {
+        return this.id;
     }
 
     @Override
