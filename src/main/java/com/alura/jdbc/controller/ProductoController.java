@@ -13,6 +13,7 @@ import java.util.Map;
 
 import com.alura.jdbc.DAO.ProductoDAO;
 import com.alura.jdbc.factory.ConnectionFactory;
+import com.alura.jdbc.modelo.Categoria;
 import com.alura.jdbc.modelo.Producto;
 
 public class ProductoController {
@@ -33,6 +34,10 @@ public class ProductoController {
 
 	public List<Producto> listar() {
 		return productoDAO.listar();
+	}
+
+	public List<Producto> listar(Categoria categoria) {
+		return productoDAO.listar(categoria.getId());
 	}
 
 	public void guardar(Producto producto, Integer categoriaId) {
