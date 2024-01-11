@@ -16,7 +16,7 @@ public class ConnectionFactory {
         var pooledDataSource = new ComboPooledDataSource();
         pooledDataSource.setJdbcUrl("jdbc:mysql://localhost/control_de_stock?useTimezone=true&serverTimeZone=UTC");
         pooledDataSource.setUser("root");
-        pooledDataSource.setPassword(".MAZdaRx7.");
+        pooledDataSource.setPassword("clave");
         pooledDataSource.setMaxPoolSize(15);
 
         this.dataSource = pooledDataSource;
@@ -29,4 +29,5 @@ public class ConnectionFactory {
             throw new RuntimeException(e);
         }
     }
+
 }
